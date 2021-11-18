@@ -1,2 +1,4 @@
 # SS-CarWash
-Car Wash script for Fivem
+An car wash script for Fivem !
+
+Don't edit or publish it without my permission !
