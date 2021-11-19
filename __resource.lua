@@ -4,6 +4,8 @@ description 'Car Wash'
 
 author 'SIREC STUDIO'
 
+--DISCORD https://discord.gg/XJrjmXc9hd ! For Support and Others !
+
 server_scripts {
 	'@mysql-async/lib/MySQL.lua',
 	'locales/language.lua',
