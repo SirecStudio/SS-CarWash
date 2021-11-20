@@ -1,5 +1,6 @@
 ESX = nil
 npc = false
+isWash = false
 
 Citizen.CreateThread(function()
 	while ESX == nil do
@@ -27,9 +28,10 @@ while true do
 for k,v in pairs(Config.WashPlaces) do
 			local distance = GetDistanceBetweenCoords(coords.x, coords.y, coords.z, v.pos[1], v.pos[2], v.pos[3], false)
 				local mk = v.marker
-				if distance <= 10.0 and distance >= 2.0 then 
+    if not isWash then               
+	if distance <= 10.0 and distance >= 2.0 then 
 				DrawMarker(mk.type, v.pos[1], v.pos[2], v.pos[3], 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, mk.scale.x, mk.scale.y, mk.scale.z, mk.color.r, mk.color.g, mk.color.b, mk.color.a, false, true, 2, false, false, false, false)
-				elseif distance <= 2.0 then
+	elseif distance <= 2.0 then
                     if IsPedInAnyVehicle(PlayerPedId(),  false) then
 					DrawText3Ds(v.pos[1], v.pos[2], v.pos[3] + 1.0, Lang['wash_car'])
 						if IsControlJustPressed(0, 38) then
@@ -38,12 +40,14 @@ for k,v in pairs(Config.WashPlaces) do
                     	end
                 	else
                     DrawText3Ds(v.pos[1], v.pos[2], v.pos[3] + 1.0, Lang['be_in_car']) 
-                	end
-                    else
-            Citizen.Wait(1000)
-			end
-		end
+                	end  
+    else
+    Citizen.Wait(1000)
 	end
+          end          
+                 
+end
+end
 end)
 
 
@@ -90,6 +94,7 @@ function WashPremium(WashPlace)
 if damage >= Config.DamageMin then
         if hasMoney then
     	-- PREP & FREEZE CAR
+        isWash = true           
     	Citizen.Wait(1000)
    		SetEntityCoords(car, WashPlace.carPos[1],WashPlace.carPos[2],WashPlace.carPos[3], false, false, false, true)
 		SetEntityHeading(car, WashPlace.carHeading)
@@ -146,7 +151,8 @@ if damage >= Config.DamageMin then
         SetVehicleEngineHealth(car, engine)
         SetVehiclePetrolTankHealth(car, tank)
     	FreezeEntityPosition(car, false)
-        ShowNotifyESX(Lang["premium_wash"])    
+        ShowNotifyESX(Lang["premium_wash"])
+        isWash = false            
      else       
      ShowNotifyESX(Lang["no_money"])
      end
@@ -169,6 +175,7 @@ function WashStandard(WashPlace)
 		end
 if hasMoney then
     	-- PREP & FREEZE CAR
+        isWash = true
     	Citizen.Wait(1000)
    		SetEntityCoords(car, WashPlace.carPos[1],WashPlace.carPos[2],WashPlace.carPos[3], false, false, false, true)
 		SetEntityHeading(car, WashPlace.carHeading)
@@ -213,7 +220,8 @@ if hasMoney then
     	WashDecalsFromVehicle(car, 1.0)
 		SetVehicleDirtLevel(car)
     	FreezeEntityPosition(car, false)
-        ShowNotifyESX(Lang["standard_wash"])    
+        ShowNotifyESX(Lang["standard_wash"])
+        isWash = false
      else       
      ShowNotifyESX(Lang["no_money"])
      end
