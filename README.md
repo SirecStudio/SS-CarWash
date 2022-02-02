@@ -10,7 +10,7 @@ This script includes 2 washing options, the first simply washes the car, the sec
 UPDATE V.1.2 ! 
 Optimizing, and remove menu if the car is in wash !
 
-DISCORD - https://discord.gg/XJrjmXc9hd ! For Support and Others !
+DISCORD - https://discord.gg/9XNBaQSmMd ! For Support and Others !
 
 BUY ME A COFFEE - https://paypal.me/sirecstudio
 
