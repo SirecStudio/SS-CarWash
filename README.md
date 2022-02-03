@@ -6,7 +6,7 @@ This script includes 2 washing options, the first simply washes the car, the sec
 📎 - Standard Wash - Only wash car
 
 📎 - Premium Wash - Wash the car, and remove any scratches, if the car is not badly damaged
-
+------------------------------------------------------------------------------------------------
 UPDATE V.1.2 ! 
 Optimizing, and remove menu if the car is in wash !
 
